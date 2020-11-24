@@ -1,0 +1,11 @@
+
+#title {
+    background-color : rgb(21, 102, 156);
+    color: aliceblue; 
+    text-align: center;
+    padding: 15px;
+}
+
+#main {
+    display: flex;
+}
