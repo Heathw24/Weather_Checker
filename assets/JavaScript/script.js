@@ -196,6 +196,7 @@ function displayInfo(){
     display.append(curHumi);
     display.append(curWindS);
     display.append(curUV);
+    display.classList.add("display");
 
     var forcast = document.getElementById("lowerMain");
     var forcastHeader = document.createElement("h3");
@@ -232,6 +233,11 @@ function displayInfo(){
     displayD5.append(d5TemDis);
     displayD5.append(d5Humidity);
 
+    displayD1.classList.add("forcast");
+    displayD2.classList.add("forcast");
+    displayD3.classList.add("forcast");
+    displayD4.classList.add("forcast");
+    displayD5.classList.add("forcast");
 
 };
 

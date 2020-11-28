@@ -13,3 +13,23 @@
 #fututeDisplay {
     display: flex;
 }
+
+.display {
+    justify-content: center;
+    padding: 20px;
+    border: solid 2px lavender;
+    margin: 20px;
+    text-align: center;
+
+}
+
+#lowerMain {
+   text-align: center;
+}
+
+.forcast {
+    background-color: #7aadf3;
+    margin: 5px;
+    color: lavender;
+    padding: 5px;
+}
