@@ -51,6 +51,10 @@ $.ajax({
 
 // Break down API Object into useable fields
 
+           // current Weather
+        var weaNow = fullresponse.current.weather[0].icon;
+        var nowURL = "http://openweathermap.org/img/w/" + weaNow + ".png";
+
            // current Temprature
        var temp = fullresponse.current.temp
        var curTemp = document.createElement("p");
@@ -73,7 +77,7 @@ $.ajax({
             
 
         // day 1 forcast
-        var d1Day = moment().add(1, 'd').format('MM DD YYYY');
+        var d1Day = moment().add(1, 'd').format('MM/DD/YYYY');
         var d1date = document.createElement("p");
         d1date.innerHTML = d1Day;
 
@@ -91,6 +95,89 @@ $.ajax({
         var d1Humidity = document.createElement("p");
         d1Humidity.innerHTML = "Humidity:" + " " + d1Humi + "%";
 
+
+         // day 2 forcast
+         var d2Day = moment().add(2, 'd').format('MM/DD/YYYY');
+         var d2date = document.createElement("p");
+         d2date.innerHTML = d2Day;
+ 
+         var day2Weather = fullresponse.daily[1].weather[0].icon;
+         var d2URL = "http://openweathermap.org/img/w/" + day2Weather + ".png"
+         var day2W = document.createElement("img");
+         day2W.src = d2URL;
+ 
+         var d2temp = fullresponse.daily[1].temp.day;
+         console.log(d2temp)
+         var d2TemDis = document.createElement("p");
+         d2TemDis.innerHTML = "Temp:" + " " + d2temp ;
+ 
+         var d2Humi = fullresponse.daily[1].humidity;
+         var d2Humidity = document.createElement("p");
+         d2Humidity.innerHTML = "Humidity:" + " " + d2Humi + "%";
+
+
+          // day 3 forcast
+          var d3Day = moment().add(3, 'd').format('MM/DD/YYYY');
+          var d3date = document.createElement("p");
+          d3date.innerHTML = d3Day;
+  
+          var day3Weather = fullresponse.daily[2].weather[0].icon;
+          var d3URL = "http://openweathermap.org/img/w/" + day3Weather + ".png"
+          var day3W = document.createElement("img");
+          day3W.src = d3URL;
+  
+          var d3temp = fullresponse.daily[2].temp.day;
+          console.log(d3temp)
+          var d3TemDis = document.createElement("p");
+          d3TemDis.innerHTML = "Temp:" + " " + d3temp ;
+  
+          var d3Humi = fullresponse.daily[2].humidity;
+          var d3Humidity = document.createElement("p");
+          d3Humidity.innerHTML = "Humidity:" + " " + d3Humi + "%";
+
+
+
+           // day 4 forcast
+           var d4Day = moment().add(4, 'd').format('MM/DD/YYYY');
+           var d4date = document.createElement("p");
+           d4date.innerHTML = d4Day;
+   
+           var day4Weather = fullresponse.daily[3].weather[0].icon;
+           var d4URL = "http://openweathermap.org/img/w/" + day4Weather + ".png"
+           var day4W = document.createElement("img");
+           day4W.src = d4URL;
+   
+           var d4temp = fullresponse.daily[3].temp.day;
+           console.log(d4temp)
+           var d4TemDis = document.createElement("p");
+           d4TemDis.innerHTML = "Temp:" + " " + d4temp ;
+   
+           var d4Humi = fullresponse.daily[3].humidity;
+           var d4Humidity = document.createElement("p");
+           d4Humidity.innerHTML = "Humidity:" + " " + d4Humi + "%";
+ 
+
+
+             // day 5 forcast
+             var d5Day = moment().add(5, 'd').format('MM/DD/YYYY');
+             var d5date = document.createElement("p");
+             d5date.innerHTML = d5Day;
+     
+             var day5Weather = fullresponse.daily[4].weather[0].icon;
+             var d5URL = "http://openweathermap.org/img/w/" + day5Weather + ".png"
+             var day5W = document.createElement("img");
+             day5W.src = d5URL;
+     
+             var d5temp = fullresponse.daily[4].temp.day;
+             console.log(d5temp)
+             var d5TemDis = document.createElement("p");
+             d5TemDis.innerHTML = "Temp:" + " " + d5temp ;
+     
+             var d5Humi = fullresponse.daily[4].humidity;
+             var d5Humidity = document.createElement("p");
+             d5Humidity.innerHTML = "Humidity:" + " " + d5Humi + "%";
+   
+
       displayInfo();
 
 
@@ -99,6 +186,10 @@ $.ajax({
 function displayInfo(){
     var cityEl = document.getElementById("cityName");
     cityEl.innerHTML = city + "   " + now;
+
+    var weatherNow = document.getElementById("currentWeather");
+    weatherNow.src = nowURL;
+
 
     var display = document.getElementById("display"); 
     display.append(curTemp);
@@ -116,6 +207,32 @@ function displayInfo(){
     displayD1.append(day1W);
     displayD1.append(d1TemDis);
     displayD1.append(d1Humidity);
+
+    var displayD2 = document.getElementById("forcast2");
+    displayD2.append(d2date);
+    displayD2.append(day2W);
+    displayD2.append(d2TemDis);
+    displayD2.append(d2Humidity);
+
+    var displayD3 = document.getElementById("forcast3");
+    displayD3.append(d3date);
+    displayD3.append(day3W);
+    displayD3.append(d3TemDis);
+    displayD3.append(d3Humidity);
+
+    var displayD4 = document.getElementById("forcast4");
+    displayD4.append(d4date);
+    displayD4.append(day4W);
+    displayD4.append(d4TemDis);
+    displayD4.append(d4Humidity);
+
+    var displayD5 = document.getElementById("forcast5");
+    displayD5.append(d5date);
+    displayD5.append(day5W);
+    displayD5.append(d5TemDis);
+    displayD5.append(d5Humidity);
+
+
 };
 
     })
