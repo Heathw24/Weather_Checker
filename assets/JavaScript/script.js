@@ -74,7 +74,18 @@ $.ajax({
         var uv = fullresponse.current.uvi;
         var curUV = document.createElement("p");
         curUV.innerHTML = "UV Index:" + " " + uv;
-            
+            if (uv <= 3) {
+                curUV.classList.add("favorable");
+            }
+
+            if (3 < uv && uv < 6) {
+                curUV.classList.add("moderate");
+            }
+
+            if ( uv >= 6) {
+                curUV.classList.add("severe");
+            }
+
 
         // day 1 forcast
         var d1Day = moment().add(1, 'd').format('MM/DD/YYYY');
