@@ -1,7 +1,7 @@
 
 
 var now = moment().format('l');
-console.log(now);
+
 
 
 var locationSearch = $("#searchArea");
@@ -20,8 +20,14 @@ var city = convertedInput.value;
 var weatherKey = "c9239d30890d94c9395849f44723296c";
 var currWeatherURl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
 var history = [];
+history = JSON.parse(localStorage.getItem("History:"))
 
-console.log(currWeatherURl);
+
+history.push(city);
+localStorage.setItem("History:", JSON.stringify(history));
+
+
+console.log(history);
 
 
 // Use input to run ajax call to APIs
@@ -31,23 +37,23 @@ $.ajax({
     url:currWeatherURl,
     method: "GET"
 }).then(function(response){
-    console.log(response)
+    
 
   // this pulls the latitude and longitude from the first api call to call the second api
     var lat = response.coord.lat;
-    console.log(lat);
+  
     var lon = response.coord.lon;
-    console.log(lon);
+    
 
   var fullWeatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + weatherKey;
-  console.log(fullWeatherURL);
+
 
     $.ajax({
         url: fullWeatherURL,
         method: "GET"
     }) .then(function(fullresponse){
 
-       console.log(fullresponse);
+       
 
 // Break down API Object into useable fields
 
@@ -98,7 +104,7 @@ $.ajax({
         day1W.src = d1URL;
 
         var d1temp = fullresponse.daily[0].temp.day;
-        console.log(d1temp)
+      
         var d1TemDis = document.createElement("p");
         d1TemDis.innerHTML = "Temp:" + " " + d1temp ;
 
@@ -118,7 +124,6 @@ $.ajax({
          day2W.src = d2URL;
  
          var d2temp = fullresponse.daily[1].temp.day;
-         console.log(d2temp)
          var d2TemDis = document.createElement("p");
          d2TemDis.innerHTML = "Temp:" + " " + d2temp ;
  
@@ -138,7 +143,6 @@ $.ajax({
           day3W.src = d3URL;
   
           var d3temp = fullresponse.daily[2].temp.day;
-          console.log(d3temp)
           var d3TemDis = document.createElement("p");
           d3TemDis.innerHTML = "Temp:" + " " + d3temp ;
   
@@ -159,7 +163,6 @@ $.ajax({
            day4W.src = d4URL;
    
            var d4temp = fullresponse.daily[3].temp.day;
-           console.log(d4temp)
            var d4TemDis = document.createElement("p");
            d4TemDis.innerHTML = "Temp:" + " " + d4temp ;
    
@@ -180,7 +183,6 @@ $.ajax({
              day5W.src = d5URL;
      
              var d5temp = fullresponse.daily[4].temp.day;
-             console.log(d5temp)
              var d5TemDis = document.createElement("p");
              d5TemDis.innerHTML = "Temp:" + " " + d5temp ;
      
