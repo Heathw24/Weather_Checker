@@ -59,12 +59,12 @@ $.ajax({
             // current Humidity
        var humi = fullresponse.current.humidity;
        var curHumi = document.createElement("p");
-       curHumi.innerHTML = "Humidity:" + " " + humi;
+       curHumi.innerHTML = "Humidity:" + " " + humi + "%";
 
             // current Windspeed
         var windS = fullresponse.current.wind_speed;
         var curWindS = document.createElement("p");
-        curWindS.innerHTML = "Wind Speed:" + " " + windS;
+        curWindS.innerHTML = "Wind Speed:" + " " + windS + " " + "MPH";
 
             // current UV index
         var uv = fullresponse.current.uvi;
@@ -73,6 +73,10 @@ $.ajax({
             
 
         // day 1 forcast
+        var d1Day = moment().add(1, 'd').format('MM DD YYYY');
+        var d1date = document.createElement("p");
+        d1date.innerHTML = d1Day;
+
         var day1Weather = fullresponse.daily[0].weather[0].icon;
         var d1URL = "http://openweathermap.org/img/w/" + day1Weather + ".png"
         var day1W = document.createElement("img");
@@ -82,6 +86,10 @@ $.ajax({
         console.log(d1temp)
         var d1TemDis = document.createElement("p");
         d1TemDis.innerHTML = "Temp:" + " " + d1temp ;
+
+        var d1Humi = fullresponse.daily[0].humidity;
+        var d1Humidity = document.createElement("p");
+        d1Humidity.innerHTML = "Humidity:" + " " + d1Humi + "%";
 
       displayInfo();
 
@@ -98,9 +106,16 @@ function displayInfo(){
     display.append(curWindS);
     display.append(curUV);
 
+    var forcast = document.getElementById("lowerMain");
+    var forcastHeader = document.createElement("h3");
+    forcastHeader.innerHTML = "5-Day Forcast";
+    forcast.prepend(forcastHeader);
+
     var displayD1 = document.getElementById("forcast1");
+    displayD1.append(d1date);
     displayD1.append(day1W);
     displayD1.append(d1TemDis);
+    displayD1.append(d1Humidity);
 };
 
     })
