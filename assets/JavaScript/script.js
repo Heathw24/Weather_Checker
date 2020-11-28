@@ -78,8 +78,10 @@ $.ajax({
         var day1W = document.createElement("img");
         day1W.src = d1URL;
 
-        var d1temp 
-
+        var d1temp = fullresponse.daily[0].temp.day;
+        console.log(d1temp)
+        var d1TemDis = document.createElement("p");
+        d1TemDis.innerHTML = "Temp:" + " " + d1temp ;
 
       displayInfo();
 
@@ -98,6 +100,7 @@ function displayInfo(){
 
     var displayD1 = document.getElementById("forcast1");
     displayD1.append(day1W);
+    displayD1.append(d1TemDis);
 };
 
     })
