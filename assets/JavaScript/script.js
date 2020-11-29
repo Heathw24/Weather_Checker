@@ -7,6 +7,7 @@ var now = moment().format('l');
 var locationSearch = $("#searchArea");
 var input = $("#locationInput");
 var convertedInput = input[0];
+pullInfo();
 
 locationSearch[0].addEventListener('submit', pullInfo);
 
@@ -15,19 +16,51 @@ locationSearch[0].addEventListener('submit', pullInfo);
 //==================================================================================================
 
 function pullInfo() {
-event.preventDefault();
+// event.preventDefault();
+var history = [];
+history = JSON.parse(localStorage.getItem("History:"));
+console.log(city)
+
 var city = convertedInput.value;
+if ( city.length == 0){
+    i = history.length - 1;
+    city = history[i];
+    console.log(city);
+}
+
+
 var weatherKey = "c9239d30890d94c9395849f44723296c";
 var currWeatherURl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
-var history = [];
-history = JSON.parse(localStorage.getItem("History:"))
 
 
-history.push(city);
-localStorage.setItem("History:", JSON.stringify(history));
+// ====== saves searches to history  ========
+ var x = history.length - 1;
+ var lastSearch = history[x];
+ console.log(lastSearch);
+
+if (city == lastSearch){
+
+} else {
+   history.push(city);
+   localStorage.setItem("History:", JSON.stringify(history));
+}
 
 
-console.log(history);
+
+
+//========== pulls history to create search history tabs=======
+
+for (var i = history.length - 1; i > history.length - 6; i--){
+    
+    var histButton = document.createElement("Div");
+    var histButtonTxt = document.createElement("p");
+    histButtonTxt.innerHTML = history[i];
+    histButton.append(histButtonTxt);
+    var displayHist = document.getElementById("searchHistory");
+    displayHist.append(histButton);
+    histButton.classList.add("HistoryButtons");
+    histButton.id = history[i];
+}  
 
 
 // Use input to run ajax call to APIs
@@ -251,6 +284,19 @@ function displayInfo(){
     displayD3.classList.add("forcast");
     displayD4.classList.add("forcast");
     displayD5.classList.add("forcast");
+
+
+            // This is a function that runs getInfo Function when a search history tab is clicked
+    // ===================================================================================================
+      
+
+
+    $(".HistoryButtons").click(function() {
+        var sh =  Event.value; 
+            console.log(sh);
+
+    })
+
 
 };
 
