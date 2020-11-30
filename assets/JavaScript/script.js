@@ -2,33 +2,43 @@
 
 var now = moment().format('l');
 
-
+var input01;
 
 var locationSearch = $("#searchArea");
-pullInfo();
+pullInfo("");
 
-locationSearch[0].addEventListener('submit', clearInfo);
-locationSearch[0].addEventListener('submit', pullInfo);
+// locationSearch[0].addEventListener('submit', clearInfo);
+locationSearch[0].addEventListener('submit', PrepairInfo);
 
 function clearInfo() {
-    var fullDisplay = document.getElementById("fullDisplay");
+    // var fullDisplay = document.getElementById("fullDisplay");
+     var fullDisplay = $("#fullDisplay");
     fullDisplay.empty();
+    var SearchHist = $("#searchHistory");
+    SearchHist.empty();
+}
+
+function PrepairInfo() {
+var input01 = document.getElementById("locationInput").value;
+
+
+
+pullInfo(input01);
 }
 
 
 // retrieve user input and convert to variables
 //==================================================================================================
 
-function pullInfo() {
+function pullInfo(city) {
 // Event.preventDefault();
 var history = [];
 history = JSON.parse(localStorage.getItem("History:"));
-console.log(city)
-
-var input01 = document.getElementById("locationInput").value;
 
 
-var city = input01;
+
+
+
 if ( city.length == 0){
     i = history.length - 1;
     city = history[i];
@@ -231,13 +241,16 @@ $.ajax({
              d5Humidity.innerHTML = "Humidity:" + " " + d5Humi + "%";
    
 
-      displayInfo();
+      displayInfo(city);
 
 
 
 // Create html and display data on page
-function displayInfo(){
-    var cityEl = document.getElementById("cityName");
+function displayInfo(city){
+    var cityEl = document.createElement("h2")
+    var disp = document.getElementById("display");
+    disp.prepend(cityEl);
+    console.log(cityEl);
     cityEl.innerHTML = city + "   " + now;
 
     var weatherNow = document.getElementById("currentWeather");
@@ -297,16 +310,19 @@ function displayInfo(){
     // ===================================================================================================
       
 
-
+ 
     $(".HistoryButtons").click(function() {
-        var sh =  event.target.id; 
-            console.log(sh);
+        var city =  event.target.id; 
+           
+
+            // var input02 = document.getElementById("locationInput");
+            // input02.value= sh;
             
+           
+            location.reload();
+            pullInfo(city);
 
-            clearInfo();
-            pullInfo();
-
-    })
+    });
 
 
 };
