@@ -5,23 +5,30 @@ var now = moment().format('l');
 
 
 var locationSearch = $("#searchArea");
-var input = $("#locationInput");
-var convertedInput = input[0];
 pullInfo();
 
+locationSearch[0].addEventListener('submit', clearInfo);
 locationSearch[0].addEventListener('submit', pullInfo);
+
+function clearInfo() {
+    var fullDisplay = document.getElementById("fullDisplay");
+    fullDisplay.empty();
+}
 
 
 // retrieve user input and convert to variables
 //==================================================================================================
 
 function pullInfo() {
-// event.preventDefault();
+// Event.preventDefault();
 var history = [];
 history = JSON.parse(localStorage.getItem("History:"));
 console.log(city)
 
-var city = convertedInput.value;
+var input01 = document.getElementById("locationInput").value;
+
+
+var city = input01;
 if ( city.length == 0){
     i = history.length - 1;
     city = history[i];
@@ -292,8 +299,12 @@ function displayInfo(){
 
 
     $(".HistoryButtons").click(function() {
-        var sh =  Event.value; 
+        var sh =  event.target.id; 
             console.log(sh);
+            
+
+            clearInfo();
+            pullInfo();
 
     })
 
