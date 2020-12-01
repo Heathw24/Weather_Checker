@@ -9,6 +9,8 @@ Tools used:
 
 1. JavaScript
 2. jQuery
-2. AJAX
+3. AJAX
+4. HTML
+5. CSS
 
 ![Weather-APP-Screenshot](assets/Images/Screenshot.png)
