@@ -33,7 +33,11 @@ pullInfo(input01);
 function pullInfo(city) {
 // Event.preventDefault();
 var history = [];
-history = JSON.parse(localStorage.getItem("History:"));
+var localHistory = JSON.parse(localStorage.getItem("History:"));
+
+if ( localHistory != null){
+    history = localHistory;
+}
 
 
 
