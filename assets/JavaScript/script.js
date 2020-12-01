@@ -72,7 +72,8 @@ if (city == lastSearch){
 //========== pulls history to create search history tabs=======
 
 for (var i = history.length - 1; i > history.length - 6; i--){
-    
+    if (history[i] != undefined){
+
     var histButton = document.createElement("Div");
     var histButtonTxt = document.createElement("p");
     histButtonTxt.innerHTML = history[i];
@@ -81,6 +82,7 @@ for (var i = history.length - 1; i > history.length - 6; i--){
     displayHist.append(histButton);
     histButton.classList.add("HistoryButtons");
     histButton.id = history[i];
+    }
 }  
 
 
